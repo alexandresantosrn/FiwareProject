@@ -1,7 +1,15 @@
 package jorge.ufrn.Subscribe;
 
+import java.io.IOException;
 import java.util.Scanner;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +18,7 @@ public class SubscribeApplication {
 
 	private static String style;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException, IOException {
 		SpringApplication.run(SubscribeApplication.class, args);
 
 		int option = 100;
@@ -33,10 +41,16 @@ public class SubscribeApplication {
 
 				case 1:
 					style = "Esportivo";
+					connect(style);
+					break;
 				case 2:
 					style = "Tradicional";
+					connect(style);
+					break;
 				case 3:
 					style = "Festa";
+					connect(style);
+					break;
 				default:
 					if (option != 0)
 						System.out.println("Opção inválida. Selecione uma das opções disponíveis!");
@@ -47,4 +61,20 @@ public class SubscribeApplication {
 		System.out.println(" \n" + "Até logo pessoal!!");
 	}
 
+	private static void connect(String style) throws ParseException, IOException {
+		
+		HttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
+
+        try {
+            HttpResponse response = httpClient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            String jsonResponse = EntityUtils.toString(entity);
+
+            // Processar a resposta JSON
+            System.out.println(jsonResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
 }
