@@ -25,7 +25,7 @@ public class SubscribeApplication {
 
 		try (Scanner in = new Scanner(System.in)) {
 
-			while (option != 0) {
+			while (option != 0 && option != 2 && option != 3 && option != 4) {
 
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("--------------------------------------------------------------");
@@ -38,7 +38,10 @@ public class SubscribeApplication {
 				option = in.nextInt();
 
 				switch (option) {
-
+				
+				case 0:
+					System.out.println(" \n" + "Até logo pessoal!!");
+					break;
 				case 1:
 					style = "Esportivo";
 					connect(style);
@@ -58,23 +61,22 @@ public class SubscribeApplication {
 			}
 		}
 
-		System.out.println(" \n" + "Até logo pessoal!!");
 	}
 
 	private static void connect(String style) throws ParseException, IOException {
-		
+
 		HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
+		HttpGet httpGet = new HttpGet("http://127.0.0.1:1026/v2/entities?type=Ar_Condicionado&limit=10&offset=0");
+		
+		try {
+			HttpResponse response = httpClient.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+			String jsonResponse = EntityUtils.toString(entity);
 
-        try {
-            HttpResponse response = httpClient.execute(httpGet);
-            HttpEntity entity = response.getEntity();
-            String jsonResponse = EntityUtils.toString(entity);
-
-            // Processar a resposta JSON
-            System.out.println(jsonResponse);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			// Processar a resposta JSON
+			System.out.println(jsonResponse);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
