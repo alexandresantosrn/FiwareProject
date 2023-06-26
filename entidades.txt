@@ -1,0 +1,43 @@
+- Criando lojas
+
+URL: http://127.0.0.1:1026/v2/entities
+
+{
+   "id": "S1",
+   "type": "Store",
+   "title": {    
+       "type": "String",   
+       "value": "Natal Rigor"
+   },
+   "latitude":  {
+       "type": "Float",
+       "value": "-5.83"
+   },
+   "longitude": {
+       "type": "Float",
+       "value": "-35.22"
+   }
+}
+
+- Criando Roupas
+
+{
+   "id": "C1",
+   "type": "Cloth",
+   "store": {    
+       "type": "String",   
+       "value": "S1"
+   },
+   "description":  {
+       "type": "String",
+       "value": "Terno Masculino de Gala"
+   },
+   "category": {
+       "type": "String",
+       "value": "Festa"
+   },
+   "avaliable": {
+       "type": "Boolean",
+       "value": true
+   }   
+}

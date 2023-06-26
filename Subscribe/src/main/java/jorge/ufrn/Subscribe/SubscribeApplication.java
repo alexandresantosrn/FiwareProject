@@ -25,7 +25,7 @@ public class SubscribeApplication {
 
 		try (Scanner in = new Scanner(System.in)) {
 
-			while (option != 0 && option != 2 && option != 3 && option != 4) {
+			while (option != 0 && option != 1 && option != 2 && option != 3 && option != 4) {
 
 				System.out.println("--------------------------------------------------------------");
 				System.out.println("--------------------------------------------------------------");
@@ -66,7 +66,8 @@ public class SubscribeApplication {
 	private static void connect(String style) throws ParseException, IOException {
 
 		HttpClient httpClient = HttpClients.createDefault();
-		HttpGet httpGet = new HttpGet("http://127.0.0.1:1026/v2/entities?type=Ar_Condicionado&limit=10&offset=0");
+		String uriCloth = "http://127.0.0.1:1026/v2/entities?type=Cloth&q=category=" + style;		
+		HttpGet httpGet = new HttpGet(uriCloth);
 		
 		try {
 			HttpResponse response = httpClient.execute(httpGet);
