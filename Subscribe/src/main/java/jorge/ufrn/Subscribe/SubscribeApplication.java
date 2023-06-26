@@ -38,7 +38,7 @@ public class SubscribeApplication {
 				option = in.nextInt();
 
 				switch (option) {
-				
+
 				case 0:
 					System.out.println(" \n" + "Até logo pessoal!!");
 					break;
@@ -66,18 +66,19 @@ public class SubscribeApplication {
 	private static void connect(String style) throws ParseException, IOException {
 
 		HttpClient httpClient = HttpClients.createDefault();
-		String uriCloth = "http://127.0.0.1:1026/v2/entities?type=Cloth&q=category=" + style;		
+		String uriCloth = "http://127.0.0.1:1026/v2/entities?type=Cloth&q=category==" + style + ";avaliable==true";
 		HttpGet httpGet = new HttpGet(uriCloth);
-		
-		try {
-			HttpResponse response = httpClient.execute(httpGet);
-			HttpEntity entity = response.getEntity();
-			String jsonResponse = EntityUtils.toString(entity);
 
-			// Processar a resposta JSON
+		HttpResponse response = httpClient.execute(httpGet);
+		HttpEntity entity = response.getEntity();
+		String jsonResponse = EntityUtils.toString(entity);
+
+		if (jsonResponse.equals("[]")) {
+			System.out.println("Não há roupas disponíveis para a categoria de trajes desejada.");
+		}
+
+		else {
 			System.out.println(jsonResponse);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 }
