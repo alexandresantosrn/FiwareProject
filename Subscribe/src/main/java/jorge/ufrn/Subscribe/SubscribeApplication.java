@@ -13,6 +13,8 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import jorge.ufrn.Subscribe.Utils.DataUtils;
+
 @SpringBootApplication
 public class SubscribeApplication {
 
@@ -76,8 +78,8 @@ public class SubscribeApplication {
 		if (jsonResponse.equals("[]")) {
 			System.out.println("Não há roupas disponíveis para a categoria de trajes desejada.");
 		}
-
 		else {
+			String cloth = DataUtils.formatCloth(jsonResponse);
 			System.out.println(jsonResponse);
 		}
 	}
