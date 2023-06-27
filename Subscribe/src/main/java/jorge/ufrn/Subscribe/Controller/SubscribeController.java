@@ -11,13 +11,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 @RequestMapping("/subscribe")
 public class SubscribeController {
 
-	
 	@PostMapping
 	public void exibirSubscricao(@RequestBody JsonNode body) {
-		
-		
-		System.out.println("\n\n\n"+body.toPrettyString());
-		
+
+		String msg = "O traje: " + body.findValue("description").findValue("value")
+				+ " encontra-se disponível para aluguel na Loja: " + body.findValue("store").findValue("value") + ".";
+
+		System.out.println(msg);
 	}
 
 }
