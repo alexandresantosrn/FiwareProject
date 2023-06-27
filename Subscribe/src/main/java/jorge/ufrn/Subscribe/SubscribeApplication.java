@@ -77,10 +77,14 @@ public class SubscribeApplication {
 
 		if (jsonResponse.equals("[]")) {
 			System.out.println("Não há roupas disponíveis para a categoria de trajes desejada.");
+			System.out.println("Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
 		}
 		else {
+			System.out.println("Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
 			String cloth = DataUtils.formatCloth(jsonResponse);
-			System.out.println(jsonResponse);
+			System.out.println(cloth);
 		}
+		
+		
 	}
 }
