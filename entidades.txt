@@ -41,3 +41,51 @@ URL: http://127.0.0.1:1026/v2/entities
        "value": true
    }   
 }
+
+URL: http://127.0.0.1:1026/v2/subscriptions
+
+- Subscrição da Roupa
+
+{
+    "subject": {
+        "entities": [{
+            "id": "C1"
+        }],
+        "condition": {
+            "type": "ONCHANGE",
+            "attrs": ["avaliable"],
+            "expression": {
+                "q": "avaliable==true"
+            }
+        }
+    },
+    "notification": {
+
+        "http": {
+            "url": "http://172.18.0.1:8080/Subscribe/subscribe"            
+        }
+    }
+}
+
+URL: http://127.0.0.1:1026/v1/updateContext
+
+- Atualizar Roupa
+
+{
+   "contextElements":[
+      {
+         "type":"Cloth",
+         "isPattern":"false",
+         "id":"C1",
+         "attributes":[
+            {
+               "name":"avaliable",
+               "type":"Boolean",
+               "value": true
+            }
+         ]
+      }
+   ],
+   "updateAction":"UPDATE"
+}
+
