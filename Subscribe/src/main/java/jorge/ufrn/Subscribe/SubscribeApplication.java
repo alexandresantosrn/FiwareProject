@@ -3,13 +3,7 @@ package jorge.ufrn.Subscribe;
 import java.io.IOException;
 import java.util.Scanner;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.client.ClientProtocolException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -20,7 +14,7 @@ public class SubscribeApplication {
 
 	private static String style;
 
-	public static void main(String[] args) throws ParseException, IOException {
+	public static void main(String[] args) throws ClientProtocolException, IOException {
 		SpringApplication.run(SubscribeApplication.class, args);
 
 		int option = 100;
@@ -65,26 +59,22 @@ public class SubscribeApplication {
 
 	}
 
-	private static void connect(String style) throws ParseException, IOException {
+	private static void connect(String style) throws ClientProtocolException, IOException {
 
-		HttpClient httpClient = HttpClients.createDefault();
 		String uriCloth = "http://127.0.0.1:1026/v2/entities?type=Cloth&q=category==" + style + ";avaliable==true";
-		HttpGet httpGet = new HttpGet(uriCloth);
 
-		HttpResponse response = httpClient.execute(httpGet);
-		HttpEntity entity = response.getEntity();
-		String jsonResponse = EntityUtils.toString(entity);
+		String jsonResponse = DataUtils.returnData(uriCloth);
 
 		if (jsonResponse.equals("[]")) {
 			System.out.println("Não há roupas disponíveis para a categoria de trajes desejada.");
-			System.out.println("Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
-		}
-		else {
-			System.out.println("Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
+			System.out.println(
+					"Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
+		} else {
+			System.out.println(
+					"Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
 			String cloth = DataUtils.formatCloth(jsonResponse);
 			System.out.println(cloth);
 		}
-		
-		
+
 	}
 }
