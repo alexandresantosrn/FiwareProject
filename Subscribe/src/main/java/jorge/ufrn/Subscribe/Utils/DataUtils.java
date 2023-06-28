@@ -51,15 +51,15 @@ public class DataUtils {
 	public static void formatStore(String jsonResponse2) {
 
 		String word1 = jsonResponse2.substring(0, 206);
-		String word2 = jsonResponse2.substring(207, 414);
-		String word3 = jsonResponse2.substring(415);
+		//String word2 = jsonResponse2.substring(207, 414);
+		//String word3 = jsonResponse2.substring(415);
 
 		store1 = word1.substring(179, 190);
-		store2 = word2.substring(179, 190);
-		store3 = word3.substring(178, 186);
+		//store2 = word2.substring(179, 190);
+		//store3 = word3.substring(178, 186);
 	}
 
-	private static String getStore(String jsonResponse) {
+	public static String getStore(String jsonResponse) {
 
 		if (jsonResponse.contains("S1")) {
 			return store1;
