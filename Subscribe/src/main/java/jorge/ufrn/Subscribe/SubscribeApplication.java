@@ -1,6 +1,8 @@
 package jorge.ufrn.Subscribe;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import org.apache.http.client.ClientProtocolException;
@@ -60,10 +62,17 @@ public class SubscribeApplication {
 	}
 
 	private static void connect(String style) throws ClientProtocolException, IOException {
-
+		
+		Date dataAtual = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dataHoraFormatada = formato.format(dataAtual);
+        
 		String uriCloth = "http://127.0.0.1:1026/v2/entities?type=Cloth&q=category==" + style + ";avaliable==true";
+		String uriStore = "http://127.0.0.1:1026/v2/entities?type=Store";
 
 		String jsonResponse = DataUtils.returnData(uriCloth);
+		String jsonResponse2 = DataUtils.returnData(uriStore);
+		DataUtils.formatStore(jsonResponse2);
 
 		if (jsonResponse.equals("[]")) {
 			System.out.println("Não há roupas disponíveis para a categoria de trajes desejada.");
@@ -73,7 +82,7 @@ public class SubscribeApplication {
 			System.out.println(
 					"Caso algum traje do tipo selecionado: " + style + " esteja disponível, este será listado abaixo.");
 			String cloth = DataUtils.formatCloth(jsonResponse);
-			System.out.println(cloth);
+			System.out.println(cloth + "(" + dataHoraFormatada + ")");
 		}
 
 	}

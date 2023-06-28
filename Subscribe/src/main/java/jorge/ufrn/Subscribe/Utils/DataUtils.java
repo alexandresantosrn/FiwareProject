@@ -12,6 +12,10 @@ import org.apache.http.util.EntityUtils;
 
 public class DataUtils {
 
+	static String store1 = "";
+	static String store2 = "";
+	static String store3 = "";
+
 	public static String returnData(String uri) throws ClientProtocolException, IOException {
 		String jsonResponse = "";
 
@@ -39,27 +43,36 @@ public class DataUtils {
 			}
 		}
 
-		String msg = "O traje: " + traje + " encontra-se disponível para aluguel na Loja: " + store +".";
+		String msg = "O traje: " + traje + " encontra-se disponível para aluguel na Loja: " + store + ".";
 
 		return msg;
 	}
 
+	public static void formatStore(String jsonResponse2) {
+
+		String word1 = jsonResponse2.substring(0, 206);
+		String word2 = jsonResponse2.substring(207, 414);
+		String word3 = jsonResponse2.substring(415);
+
+		store1 = word1.substring(179, 190);
+		store2 = word2.substring(179, 190);
+		store3 = word3.substring(178, 186);
+	}
+
 	private static String getStore(String jsonResponse) {
 
-		String store = "";
 		if (jsonResponse.contains("S1")) {
-			store = "Natal Rigor";
+			return store1;
 		}
 
 		else if (jsonResponse.contains("S2")) {
-			store = "S2";
+			return store2;
 		}
 
-		else if (jsonResponse.contains("S3")) {
-			store = "S3";
+		else {
+			return store3;
 		}
 
-		return store;
 	}
 
 }
