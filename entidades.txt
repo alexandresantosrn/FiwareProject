@@ -19,6 +19,44 @@ URL: http://127.0.0.1:1026/v2/entities
    }
 }
 
+- Criando lojas 2
+
+{
+   "id": "S2",
+   "type": "Store",
+   "title": {    
+       "type": "String",   
+       "value": "Nobel Rigor"
+   },
+   "latitude":  {
+       "type": "Float",
+       "value": "-5.80"
+   },
+   "longitude": {
+       "type": "Float",
+       "value": "-35.21"
+   }
+}
+
+- Criando lojas 3
+
+{
+   "id": "S3",
+   "type": "Store",
+   "title": {    
+       "type": "String",   
+       "value": "Me Veste"
+   },
+   "latitude":  {
+       "type": "Float",
+       "value": "-5.82"
+   },
+   "longitude": {
+       "type": "Float",
+       "value": "-35.21"
+   }
+}
+
 - Criando Roupas
 
 {

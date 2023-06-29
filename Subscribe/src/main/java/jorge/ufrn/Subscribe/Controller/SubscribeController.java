@@ -26,7 +26,7 @@ public class SubscribeController {
 		String store = body.findValue("store").findValue("value").textValue();
 		store = DataUtils.getStore(store);
 		
-		String msg = " \n O traje: " + body.findValue("description").findValue("value")
+		String msg = " \nO traje: " + body.findValue("description").findValue("value")
 				+ " encontra-se disponível para aluguel na Loja: " + store + "." + "(" + dataHoraFormatada + ")";
 
 		System.out.println(msg);
