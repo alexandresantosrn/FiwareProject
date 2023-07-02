@@ -62,11 +62,11 @@ public class SubscribeApplication {
 	}
 
 	private static void connect(String style) throws ClientProtocolException, IOException {
-		
+
 		Date dataAtual = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dataHoraFormatada = formato.format(dataAtual);
-        
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String dataHoraFormatada = formato.format(dataAtual);
+
 		String uriCloth = "http://127.0.0.1:1026/v2/entities?type=Cloth&q=category==" + style + ";avaliable==true";
 		String uriStore = "http://127.0.0.1:1026/v2/entities?type=Store";
 

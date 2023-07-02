@@ -18,14 +18,14 @@ public class SubscribeController {
 
 	@PostMapping
 	public void exibirSubscricao(@RequestBody JsonNode body) {
-		
+
 		Date dataAtual = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dataHoraFormatada = formato.format(dataAtual);
-        
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String dataHoraFormatada = formato.format(dataAtual);
+
 		String store = body.findValue("store").findValue("value").textValue();
 		store = DataUtils.getStore(store);
-		
+
 		String msg = " \nO traje: " + body.findValue("description").findValue("value")
 				+ " encontra-se disponível para aluguel na Loja: " + store + "." + "(" + dataHoraFormatada + ")";
 

@@ -76,6 +76,27 @@ URL: http://127.0.0.1:1026/v2/entities
    },
    "avaliable": {
        "type": "Boolean",
+       "value": false
+   }   
+}
+
+{
+   "id": "C2",
+   "type": "Cloth",
+   "store": {    
+       "type": "String",   
+       "value": "S1"
+   },
+   "description":  {
+       "type": "String",
+       "value": "Vestido de Roupa Feminino"
+   },
+   "category": {
+       "type": "String",
+       "value": "Festa"
+   },
+   "avaliable": {
+       "type": "Boolean",
        "value": true
    }   
 }
